@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    name: 回归门禁（smoke_test 零权重子集）
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy opencv-python-headless
+
+      # 与 release.yml 的发布前门禁跑同一个子集：GitHub runner 上没有 torch /
+      # onnxruntime，也没有模型权重，故只跑零权重可运行的经典管线。
+      - name: Regression gate (smoke_test.py)
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python smoke_test.py --fast --only "经典管线,线稿直填"
