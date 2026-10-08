@@ -19,3 +19,9 @@ demo_ext/
 smoke_out/
 __pycache__/
 *.pyc
+
+# AI agent 工具链产物（如 qoder better-harness 报告），不入库
+.qoder/
+
+# Web 界面运行时生成的配置目录
+configs/

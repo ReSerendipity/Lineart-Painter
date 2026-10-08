@@ -1,0 +1,23 @@
+# Dependabot 依赖更新（限流版）
+# 策略：月度检查 + 每生态并发 PR 上限 5 + 忽略一切跨 major 跃迁。
+# 目的：避免 main 频繁更新时自动开出大量跨大版本升级 PR。
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
