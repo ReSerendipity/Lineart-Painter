@@ -77,6 +77,8 @@ python smoke_test.py --fast     # 快速（约 30 秒）
 python lineart_painter.py input.png --out out_demo
 ```
 
+> 仓内已附示例输入：`demo_input.png`（照片）与 `cad_demo_input.png`（线稿图）；经典管线零模型即可跑通，例如 `python lineart_painter.py demo_input.png --out out_demo`。
+
 处理视频：
 
 ```bash
@@ -159,3 +161,5 @@ Lineart_Painter/
 - Web 服务默认只监听 `127.0.0.1`，仅供本机使用。
 - 输入图片、视频和生成结果默认保存在本地项目目录中，请根据需要自行清理。
 - 本项目代码以 Apache License 2.0 发布；第三方模型和依赖仍以其各自许可证为准。
+
+Copyright 2026 ReSerendipity。
