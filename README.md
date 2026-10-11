@@ -160,6 +160,6 @@ Lineart_Painter/
 - AnimateDiff 以 16 帧为一段生成，段边界可能有轻微跳变；逐帧神经上色对快速运动镜头有闪烁，AnimateDiff 可显著缓解。
 - Web 服务默认只监听 `127.0.0.1`，仅供本机使用。
 - 输入图片、视频和生成结果默认保存在本地项目目录中，请根据需要自行清理。
-- 本项目代码以 Apache License 2.0 发布；第三方模型和依赖仍以其各自许可证为准。
+- 本项目代码以 Apache License 2.0 发布。随仓内嵌的第三方源码（ConvNeXt / detr / DDColor / Anime2Sketch）及其许可证与义务见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)；运行时在线拉取的模型权重不在仓内，需自行接受各自条款。
 
 Copyright 2026 ReSerendipity。
