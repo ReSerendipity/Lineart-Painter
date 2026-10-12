@@ -98,6 +98,7 @@ def flat_colors(rgb, k=10, downscale=512, return_centers=False):
                        interpolation=cv2.INTER_AREA) if scale < 1.0 else rgb
     pixels = small.reshape(-1, 3).astype(np.float32)
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 12, 1.0)
+    cv2.setRNGSeed(0)  # 固定 K-Means 随机初始化，保证同输入同输出（可复现）
     _, labels, centers = cv2.kmeans(pixels, k, None, criteria, 3,
                                     cv2.KMEANS_PP_CENTERS)
     centers = np.clip(np.round(centers), 0, 255).astype(np.uint8)
