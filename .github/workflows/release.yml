@@ -95,6 +95,15 @@ jobs:
       - name: Package dist folder
         run: Compress-Archive -Path dist -DestinationPath lineart_painter-windows.zip
 
+      - name: Generate SHA256SUMS
+        shell: pwsh
+        run: |
+          $zip = "lineart_painter-windows-${{ github.ref_name }}.zip"
+          if (-not (Test-Path $zip)) { throw "missing artifact: $zip" }
+          $hash = (Get-FileHash -Algorithm SHA256 $zip).Hash.ToLower()
+          "$hash  $zip" | Out-File -FilePath SHA256SUMS.txt -Encoding ascii
+          Get-Content SHA256SUMS.txt
+
       # 仅标签发布才创建 release；手动 workflow_dispatch 触发时到此为止，
       # 用于验证回归门禁本身而不会误发版。
       - name: Publish release
@@ -107,4 +116,6 @@ jobs:
             ## Lineart Painter ${{ github.ref_name }}
             - Windows 便携包：`lineart_painter-windows.zip`（解压后运行 lineart_painter.exe，浏览器打开 http://127.0.0.1:8765）
             - 依赖仅 numpy + opencv，模型权重运行时通过 setup_models.py 下载
-          files: lineart_painter-windows.zip
+          files: |
+            lineart_painter-windows-${{ github.ref_name }}.zip
+            SHA256SUMS.txt
