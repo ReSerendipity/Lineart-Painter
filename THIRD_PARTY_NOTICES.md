@@ -6,7 +6,11 @@
 - 运行时在线拉取的模型权重与 pip 依赖**不在 git 树内**，不构成本仓的再分发物，口径见文末「范围说明」。
 - 文中「逐字节相同」= 两侧文件的 git blob SHA 相等（SHA 按内容寻址，相等即字节相等）；「行尾归一后相同」= 把 CRLF/CR 统一为 LF 后字节相等。
 
-登记对象：`Lineart-Painter @ 479485f94abc45e8b0fa4c74a6da4305011fa7b7`
+登记基准：`Lineart-Painter @ 479485f94abc45e8b0fa4c74a6da4305011fa7b7`（该 ref 共 54 个 blob）。
+
+台账复核：当前 `main` tip 为 `d657ea35b13b6acca9b8dcd14fa1b92a3fd8d4fa`（55 个 blob）；`compare/479485f…d657ea3` 的差集只有 `README.md`（改）与本文件（新增）。登记在册的 12 个 in-tree 对象（`_a2s_data.py`、`_a2s_model.py`、`_a2s_test.py`、`_ddcolor_net.py`、`_ddcolor_pipeline.py` 与 `basicsr/` 下 7 个文件）在 release `v1.0.0`（`f55f712dbf`，40 个 blob）、登记基准与当前 tip 三处的 git blob SHA **全部相同** ⇒ 发布出去的那一版与 main 上被登记的这一版是同一批字节。
+
+最后核验日期：2026-10-12（三份 `git/trees?recursive=1` 逐路径比对，`truncated=false`）。
 
 ---
 
