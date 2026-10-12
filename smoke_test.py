@@ -70,6 +70,8 @@ def main():
     if "--only" in args:
         only = args[args.index("--only") + 1].split(",")
 
+    if not os.path.exists(VIDEO):
+        print("  [SKIP] 视频输入缺失: %s（test_video.mp4 未纳入版本库）" % VIDEO)
     shutil.rmtree(OUT, ignore_errors=True)
     os.makedirs(OUT, exist_ok=True)
 
@@ -141,14 +143,14 @@ def main():
             assert has_png(d, "anime_style")
         check("动漫风格化 (AnimeGANv2 ONNX)", _animegan)
 
-    if want("视频经典") and not fast:
+    if want("视频经典") and not fast and os.path.exists(VIDEO):
         def _video():
             d = clean_out("video")
             lp.process_video(VIDEO, d, k=6, max_side=480)
             assert has_mp4(d), "缺少 mp4 产物"
         check("视频经典管线 (75帧)", _video)
 
-    if want("视频扩展") and not fast:
+    if want("视频扩展") and not fast and os.path.exists(VIDEO):
         def _video_ext():
             d = clean_out("video_ext")
             lp.process_video(VIDEO, d, k=6, max_side=480,
@@ -157,7 +159,7 @@ def main():
             assert os.path.exists(os.path.join(d, "video_anime_style_h264.mp4"))
         check("视频 DDColor/AnimeGAN 扩展", _video_ext)
 
-    if want("AnimateDiff") and not fast:
+    if want("AnimateDiff") and not fast and os.path.exists(VIDEO):
         def _adiff():
             d = clean_out("adiff")
             lp.process_video(VIDEO, d, k=6, max_side=480,
