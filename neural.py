@@ -591,6 +591,16 @@ class DDColorizer:
 # =====================================================================
 # 四、AnimeGANv2 动漫风格化（ONNX，验证移动端设备端推理路线）
 # =====================================================================
+def _pick_ort_providers():
+    """按 ort.get_available_providers() 选取执行后端：优先 CUDA，回退 CPU。"""
+    import onnxruntime as _ort
+
+    available = _ort.get_available_providers()
+    preferred = [p for p in ("CUDAExecutionProvider", "CPUExecutionProvider")
+                 if p in available]
+    return preferred or ["CPUExecutionProvider"]
+
+
 _ANIME_SESS = None
 
 
@@ -612,7 +622,7 @@ class AnimeGAN:
                                       "face_paint_512_v2_0.onnx")
         if _ANIME_SESS is None:
             _ANIME_SESS = ort.InferenceSession(
-                model_path, providers=["CPUExecutionProvider"])
+                model_path, providers=_pick_ort_providers())
         sess = _ANIME_SESS
         inp = sess.get_inputs()[0]
         self._name = inp.name
