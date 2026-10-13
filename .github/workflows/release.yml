@@ -110,6 +110,11 @@ jobs:
 
       - name: Generate CycloneDX SBOM
         shell: pwsh
+        env:
+          # requirements.txt 含中文注释（UTF-8）；强制 Python UTF-8 模式，
+          # 否则 Windows 上 cyclonedx-py 按系统 charmap(GBK) 读取会 UnicodeDecodeError。
+          PYTHONUTF8: "1"
+          PYTHONIOENCODING: utf-8
         run: |
           # 对声明依赖生成 CycloneDX JSON 清单
           cyclonedx-py requirements --spec-version 1.6 --output-format JSON --output-file sbom-cyclonedx.json requirements.txt
