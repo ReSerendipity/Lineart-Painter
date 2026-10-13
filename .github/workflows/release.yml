@@ -93,7 +93,9 @@ jobs:
           & pyinstaller @pyArgs
 
       - name: Package dist folder
-        run: Compress-Archive -Path dist -DestinationPath lineart_painter-windows.zip
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist -DestinationPath "lineart_painter-windows-${{ github.ref_name }}.zip"
 
       - name: Generate SHA256SUMS
         shell: pwsh
