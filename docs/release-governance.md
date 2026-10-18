@@ -24,8 +24,8 @@
 ## 2. CHANGELOG 管理
 
 - 目标口径遵循 **Keep a Changelog**：`Added / Changed / Fixed / Deprecated / Removed / Security`；每次合并 `main` 在 `[Unreleased]` 追加，type 映射 `feat→Added`、`fix→Fixed`、`refactor→Changed`；发版时 `[Unreleased]` → `[VERSION] - YYYY-MM-DD`。
-- **本仓现状**：仓内**无 `CHANGELOG.md`**。`release.yml` 的发布步骤使用 `generateReleaseNotes: true`（GitHub 自动按提交分类生成 release notes），并在其基础上补固定安装说明；自动笔记为空时不阻断发布。
-- 落地 `CHANGELOG.md`（并在 `release.yml` 中改用它）属待办 —— **待定（负责人 + 触发条件）**。
+- **本仓现状（2026-10-18 更新）**：仓内**已有根级 `CHANGELOG.md`**（Keep a Changelog 结构，含 `[Unreleased]` 与 `[1.0.0] - 2026-09-13` 段）。`release.yml` 的发布步骤**仍使用** `generateReleaseNotes: true`（GitHub 自动按提交分类生成 release notes），并在其基础上补固定安装说明；自动笔记为空时不阻断发布。
+- 在 `release.yml` 中**改用 `CHANGELOG.md` 作为发布说明来源**仍属待办 —— **待定（负责人 + 触发条件）**。
 
 ## 3. 发布流程（远端）
 
@@ -68,7 +68,7 @@
 ## 7. 发布前检查清单
 
 - [ ] 版本位确认：本仓无独立版本声明文件；核对 `git tag v<X.Y.Z>` 与 Release 标题 / 说明一致
-- [ ] 发布说明：本仓无 `CHANGELOG.md`，确认 GitHub 自动生成的 notes 并人工补固定安装说明（若此项已迁移到 `CHANGELOG.md`，改按 Keep a Changelog 口径核对）
+- [ ] 发布说明：本仓已有 `CHANGELOG.md`，按 Keep a Changelog 口径核对 `[Unreleased]` 并改版本 + 日期（`release.yml` 仍生成 GitHub 自动 notes，**改用 CHANGELOG 作发布说明来源**属待收敛）
 - [ ] 回归门禁通过：`python smoke_test.py --fast --only "经典管线,线稿直填"` 退出码 0（与 `.github/workflows/ci.yml`、`release.yml` 同口径）
 - [ ] 若本次涉及神经功能：本地 `python smoke_test.py` 全量通过（CI runner 无 torch / onnxruntime 与模型权重，无法覆盖）
 - [ ] lint / format 命令：本仓**无** lint / format 门禁，不适用
@@ -83,7 +83,7 @@
 |---|---|---|
 | 默认分支 | `main` | 符合 |
 | 版本位 | 无声明文件；发布版本由 git tag 承担，最新 `v1.0.0` | 无自动一致性校验，待收敛 |
-| CHANGELOG | 无 `CHANGELOG.md`，用 GitHub 自动 notes | 未落地，待收敛 |
+| CHANGELOG | 已有根级 `CHANGELOG.md`（Keep a Changelog）；`release.yml` 仍用 GitHub 自动 notes | 主体已落地；改用 CHANGELOG 作发布说明来源待收敛 |
 | 发布链 | 有：`.github/workflows/release.yml`（tag 驱动）+ `ci.yml` | Release 直接 `published`，未走 draft 人工审核 |
 | 产物 | Windows 便携 zip + `SHA256SUMS.txt` + CycloneDX SBOM | 既有 `v1.0.0` 未附校验与 SBOM（历史） |
 | 容器镜像 | 无 | §10.3 镜像条款不适用 |
