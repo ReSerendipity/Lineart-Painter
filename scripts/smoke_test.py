@@ -5,9 +5,9 @@ smoke_test.py — 自动化回归测试（三个引擎 + 全部扩展）
 把完整管线在真实输入上跑一遍，逐项检查产物存在且非空，输出 PASS/FAIL。
 
 用法：
-    python smoke_test.py            # 全量（含神经上色/视频，约 2~4 分钟）
-    python smoke_test.py --fast     # 跳过神经上色与视频（约 30 秒）
-    python smoke_test.py --only 经典管线 神经线稿 DDColor   # 只跑指定项
+    python scripts/smoke_test.py            # 全量（含神经上色/视频，约 2~4 分钟）
+    python scripts/smoke_test.py --fast     # 跳过神经上色与视频（约 30 秒）
+    python scripts/smoke_test.py --only 经典管线 神经线稿 DDColor   # 只跑指定项
 
 退出码：0 = 全部通过；1 = 有失败。产物输出到 smoke_out/（失败时保留现场）。
 """
@@ -17,10 +17,12 @@ import shutil
 import sys
 import traceback
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "smoke_out")
-INPUT = os.path.join(HERE, "demo_input.png")
-VIDEO = os.path.join(HERE, "test_video.mp4")
+# 脚本位于 scripts/，仓库根为上一级；输入/输出与 lineart_painter 均按仓库根定位
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+OUT = os.path.join(ROOT, "smoke_out")
+INPUT = os.path.join(ROOT, "demo_input.png")
+VIDEO = os.path.join(ROOT, "test_video.mp4")
 
 import lineart_painter as lp  # noqa: E402
 

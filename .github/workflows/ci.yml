@@ -35,4 +35,4 @@ jobs:
       - name: Regression gate (smoke_test.py)
         env:
           PYTHONIOENCODING: utf-8
-        run: python smoke_test.py --fast --only "经典管线,线稿直填"
+        run: python scripts/smoke_test.py --fast --only "经典管线,线稿直填"

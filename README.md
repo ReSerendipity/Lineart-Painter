@@ -43,9 +43,9 @@ python -m pip install -r requirements-neural.txt
 ### 2. 下载模型权重（一键脚本）
 
 ```bash
-python setup_models.py              # 下载全部（约 10GB，hf-mirror 镜像）
-python setup_models.py --list       # 查看可下载项
-python setup_models.py --only sd15 cn_anime anime2sketch   # 只下需要的
+python scripts/setup_models.py              # 下载全部（约 10GB，hf-mirror 镜像）
+python scripts/setup_models.py --list       # 查看可下载项
+python scripts/setup_models.py --only sd15 cn_anime anime2sketch   # 只下需要的
 ```
 
 经典管线（XDoG + K-Means）零模型即可运行；只有用到神经功能才需要对应权重。脚本可断点续传，已下载文件自动跳过。
@@ -65,8 +65,8 @@ python webui.py
 ### 4. 回归测试
 
 ```bash
-python smoke_test.py            # 全量（含神经上色与视频，约 3~5 分钟）
-python smoke_test.py --fast     # 快速（约 30 秒）
+python scripts/smoke_test.py            # 全量（含神经上色与视频，约 3~5 分钟）
+python scripts/smoke_test.py --fast     # 快速（约 30 秒）
 ```
 
 ## 命令行用法
@@ -91,7 +91,7 @@ python lineart_painter.py input.mp4 --out out_video
 # 神经线稿 + 神经上色（动漫线稿 ControlNet，默认）
 python lineart_painter.py input.png --neural-lineart --neural-color
 
-# 用 canny / scribble / depth 变体（先运行 setup_models.py 下载对应权重）
+# 用 canny / scribble / depth 变体（先运行 scripts/setup_models.py 下载对应权重）
 python lineart_painter.py input.png --neural-color --cn canny
 
 # 手绘线稿直接上色
@@ -121,7 +121,7 @@ python lineart_painter.py --help
 
 ## 可选模型
 
-模型权重没有提交到 Git 仓库，因为它们体积很大，并且部分模型受各自上游项目许可证和下载条款约束。用 `python setup_models.py` 一键下载（来自 hf-mirror 镜像），程序从本地目录读取：
+模型权重没有提交到 Git 仓库，因为它们体积很大，并且部分模型受各自上游项目许可证和下载条款约束。用 `python scripts/setup_models.py` 一键下载（来自 hf-mirror 镜像），程序从本地目录读取：
 
 | 功能 | 目录或文件 | 大小 | 额外依赖 |
 | --- | --- | --- | --- |
@@ -143,11 +143,15 @@ Lineart_Painter/
 ├── webui.py                 # 本地 Web 服务和界面（支持批量）
 ├── lineart_painter.py       # 核心图片 / 视频处理流程
 ├── neural.py                # 神经模型适配（含 AnimateDiff / 深度估计）
-├── setup_models.py          # 一键下载全部模型权重
-├── smoke_test.py            # 自动化回归测试
 ├── basicsr/                 # DDColor 所需网络组件
 ├── _ddcolor_*.py            # DDColor 推理组件
-├── _a2s_*.py                # Anime2Sketch 官方源码
+├── scripts/                 # 工具脚本（模型下载 / 回归测试 / 上游参考源码）
+│   ├── setup_models.py      # 一键下载全部模型权重
+│   ├── smoke_test.py        # 自动化回归测试
+│   ├── webui_test.py        # Web 请求处理聚焦测试
+│   ├── download_models.sh    # 模型权重下载 shell 封装
+│   └── _a2s_*.py            # Anime2Sketch 官方源码
+├── docs/                    # 文档（含 THIRD_PARTY_NOTICES.md）
 ├── models/                  # 本地模型缓存，不纳入 Git
 ├── weights/                 # Anime2Sketch 权重，不纳入 Git
 ├── uploads/                 # Web 上传文件，不纳入 Git
@@ -160,6 +164,6 @@ Lineart_Painter/
 - AnimateDiff 以 16 帧为一段生成，段边界可能有轻微跳变；逐帧神经上色对快速运动镜头有闪烁，AnimateDiff 可显著缓解。
 - Web 服务默认只监听 `127.0.0.1`，仅供本机使用。
 - 输入图片、视频和生成结果默认保存在本地项目目录中，请根据需要自行清理。
-- 本项目代码以 Apache License 2.0 发布。随仓内嵌的第三方源码（ConvNeXt / detr / DDColor / Anime2Sketch）及其许可证与义务见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)；运行时在线拉取的模型权重不在仓内，需自行接受各自条款。
+- 本项目代码以 Apache License 2.0 发布。随仓内嵌的第三方源码（ConvNeXt / detr / DDColor / Anime2Sketch）及其许可证与义务见 [THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md)；运行时在线拉取的模型权重不在仓内，需自行接受各自条款。
 
 Copyright 2026 ReSerendipity。

@@ -46,7 +46,7 @@ HF_ENDPOINT = "https://hf-mirror.com"
 def _load_a2s_module():
     import importlib.util
 
-    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_a2s_model.py")
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts", "_a2s_model.py")
     spec = importlib.util.spec_from_file_location("a2s_model", path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
@@ -198,7 +198,7 @@ class NeuralColorizer:
                                                "diffusion_pytorch_model.fp16.safetensors")):
                 raise FileNotFoundError(
                     "标准版 ControlNet 权重未找到（%s）。请先运行：\n"
-                    "  python setup_models.py --only cn_standard"
+                    "  python scripts/setup_models.py --only cn_standard"
                     % CN_STANDARD_DIR)
             return CN_STANDARD_DIR
         if variant in CN_VARIANT_DIRS:
@@ -207,7 +207,7 @@ class NeuralColorizer:
                     d, "diffusion_pytorch_model.fp16.safetensors")):
                 raise FileNotFoundError(
                     "ControlNet(%s) 权重未找到（%s）。请先运行：\n"
-                    "  python setup_models.py --only cn_%s"
+                    "  python scripts/setup_models.py --only cn_%s"
                     % (variant, d, variant))
             return d
         # anime / manga_line 共用 anime ControlNet 模型
@@ -430,7 +430,7 @@ class AnimateDiffColorizer:
         if not snaps:
             raise FileNotFoundError(
                 "未找到 %s 的本地权重缓存（%s）。请运行："
-                "python setup_models.py --only sd15 cn_anime" % (model_id, base))
+                "python scripts/setup_models.py --only sd15 cn_anime" % (model_id, base))
         return snaps[-1]
 
     def _cn_dir(self):
@@ -448,7 +448,7 @@ class AnimateDiffColorizer:
                 ANIMATEDIFF_DIR, "diffusion_pytorch_model.fp16.safetensors")):
             raise FileNotFoundError(
                 "AnimateDiff 运动适配器未找到（%s）。请运行：\n"
-                "  python setup_models.py --only animatediff" % ANIMATEDIFF_DIR)
+                "  python scripts/setup_models.py --only animatediff" % ANIMATEDIFF_DIR)
         sd_dir = self._local_snapshot(self.sd_model)
         cn_dir = self._cn_dir()
         print("[neural] 加载 AnimateDiff + ControlNet(%s) + SD1.5 (fp16) ..."

@@ -258,9 +258,9 @@ PAGE = """<!DOCTYPE html>
       <tr><td>depth 深度</td><td>按景深结构上色</td><td>约 690MB + MiDaS</td></tr>
     </table>
     <h4>模型下载（在项目目录命令行执行）</h4>
-    <code>python setup_models.py --list</code> 查看全部<br>
-    <code>python setup_models.py</code> 全部下载（约 8.6GB）<br>
-    <code>python setup_models.py --only anime2sketch ddcolor</code> 只下指定项<br>
+    <code>python scripts/setup_models.py --list</code> 查看全部<br>
+    <code>python scripts/setup_models.py</code> 全部下载（约 8.6GB）<br>
+    <code>python scripts/setup_models.py --only anime2sketch ddcolor</code> 只下指定项<br>
     未下载的模型选中后会报错提示，下载后即可使用。
     <h4>常用组合速查</h4>
     <table>

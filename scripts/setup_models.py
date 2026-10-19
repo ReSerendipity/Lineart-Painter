@@ -3,10 +3,10 @@
 setup_models.py — 一键下载 / 校验全部模型权重
 ================================================
 用法：
-    python setup_models.py                 # 下载全部可选模型（约 10GB）
-    python setup_models.py --list          # 列出可下载项
-    python setup_models.py --only sd15 cn_anime anime2sketch   # 只下指定项
-    python setup_models.py --skip anime2sketch                 # 跳过指定项
+    python scripts/setup_models.py                 # 下载全部可选模型（约 10GB）
+    python scripts/setup_models.py --list          # 列出可下载项
+    python scripts/setup_models.py --only sd15 cn_anime anime2sketch   # 只下指定项
+    python scripts/setup_models.py --skip anime2sketch                 # 跳过指定项
 
 所有权重来自 hf-mirror（国内镜像），已存在且大小匹配的文件自动跳过（可断点续传）。
 无需全部下载：经典管线（XDoG + K-Means）零模型即可运行；
@@ -32,7 +32,8 @@ import time
 import urllib.request
 
 HF_ENDPOINT = "https://hf-mirror.com"
-HERE = os.path.dirname(os.path.abspath(__file__))
+# 脚本位于 scripts/，权重统一落到仓库根的 models/ 与 weights/（与运行时 neural.py 同口径）
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HF_HOME = os.path.join(HERE, "models", "hfhome")
 os.environ["HF_ENDPOINT"] = HF_ENDPOINT
 os.environ["HF_HUB_DISABLE_XET"] = "1"
