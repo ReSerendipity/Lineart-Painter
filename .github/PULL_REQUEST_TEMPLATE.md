@@ -12,10 +12,10 @@
 
 ## 验证方式
 
-<!-- 列出你运行过的检查，如 `python smoke_test.py --fast` -->
+<!-- 列出你运行过的检查，如 `python scripts/smoke_test.py --fast` -->
 
 ## 检查清单
 
-- [ ] 本地已跑通回归：`python smoke_test.py --fast`
+- [ ] 本地已跑通回归：`python scripts/smoke_test.py --fast`
 - [ ] 已同步更新相关文档 / README
 - [ ] 未改动排除清单中的素材 / 生成物（demo_input.png、cad_demo_input.png、assets/icons/**、docs/icons/**）

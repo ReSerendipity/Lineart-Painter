@@ -7,7 +7,7 @@ smoke_test.py 只 import lineart_painter，从不触及 webui 的 HTTP 契约；
 “无在线轮询客户端时仍可事后追溯”的持久关联日志。
 
 断言与退出码风格沿用 smoke_test.py：
-    python webui_test.py          # 运行全部聚焦检查
+    python scripts/webui_test.py          # 运行全部聚焦检查
 
 退出码：0 = 全部通过；1 = 有失败（错误入参等回归会被暴露）。
 不依赖 numpy/cv2/torch：lineart_painter 与 vram_manager 以桩模块替换。
@@ -22,8 +22,9 @@ import time
 import traceback
 from urllib.parse import parse_qs
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
+# 脚本位于 scripts/，webui.py 在仓库根，需把根目录加入 import 搜索路径
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
 
 # --- 用轻量桩替换重依赖，保证聚焦测试可独立、确定性地导入 webui ---
 _lp = __import__("types").ModuleType("lineart_painter")

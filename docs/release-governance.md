@@ -49,16 +49,16 @@
 - **不涉及容器镜像**：本仓无 `ghcr.io` 推送、无 `Dockerfile`，因此 §10.3 的镜像条款（不可变 semver + sha 标签、禁 floating `latest`、Trivy 阻断、`provenance`/`sbom`）**本仓均不适用**。SBOM 以 CycloneDX 需求清单形式随 Release 提供。
 - **不使用 GPG 分离签名**（2026-10-18 裁决）：本仓 `.github/workflows/` 仅有 `ci.yml` 与 `release.yml`，**不存在** `gpg-signed-release.yml`。
 - **无桌面壳签名**：本仓是 PyInstaller 便携包，**非** Tauri / NSIS / APK，故无 ed25519 `*.sig` / `*.sig.ed25519`；完整性仅由 `SHA256SUMS.txt` 承担（防传输损坏）。
-- **模型权重不入包**：`models/` 与 `weights/` 由 `.gitignore` 排除，运行时通过 `setup_models.py` 拉取（约 10GB），不构成 Release 资产。
+- **模型权重不入包**：`models/` 与 `weights/` 由 `.gitignore` 排除，运行时通过 `scripts/setup_models.py` 拉取（约 10GB），不构成 Release 资产。
 - **既有 Release 现状（2026-10-18 实测）**：`v1.0.0` Release 实际仅挂**单个资产** `lineart_painter-windows.zip`（66,689,851 B），**未附** `SHA256SUMS.txt` / SBOM；该版发布于当前 `release.yml` 产物与命名口径之前，属历史差异。
 
 ## 5. 回滚
 
-- **判定**（满足任一即触发）：本仓为本地桌面工具，**无在线监控 / 无健康端点**，故阈值 **待定（负责人 + 触发条件）**。现实可触发的信号：已发布便携包在目标 Windows 环境启动失败，或本地全量回归 `python smoke_test.py` 复现红。
+- **判定**（满足任一即触发）：本仓为本地桌面工具，**无在线监控 / 无健康端点**，故阈值 **待定（负责人 + 触发条件）**。现实可触发的信号：已发布便携包在目标 Windows 环境启动失败，或本地全量回归 `python scripts/smoke_test.py` 复现红。
 - **执行**：
   - 代码与配置回滚：`git revert <bad-commit>`（保历史、可再 forward）。
   - 产物回滚：本仓无远端部署目标，无配置回滚；如需重发已发布版本，**重指向 / 删除 tag、移动任何远端 ref 属破坏性远端动作，须仓库所有者单独授权**。
-- **回滚后验证**：`python smoke_test.py --fast`（零权重最小子集，与 CI 和 `release.yml` 门禁同口径：`--only "经典管线,线稿直填"`）；若本次涉及神经功能，另跑全量 `python smoke_test.py`。
+- **回滚后验证**：`python scripts/smoke_test.py --fast`（零权重最小子集，与 CI 和 `release.yml` 门禁同口径：`--only "经典管线,线稿直填"`）；若本次涉及神经功能，另跑全量 `python scripts/smoke_test.py`。
 
 ## 6. SLA / 错误预算
 
@@ -69,8 +69,8 @@
 
 - [ ] 版本位确认：本仓无独立版本声明文件；核对 `git tag v<X.Y.Z>` 与 Release 标题 / 说明一致
 - [ ] 发布说明：本仓已有 `CHANGELOG.md`，按 Keep a Changelog 口径核对 `[Unreleased]` 并改版本 + 日期（`release.yml` 仍生成 GitHub 自动 notes，**改用 CHANGELOG 作发布说明来源**属待收敛）
-- [ ] 回归门禁通过：`python smoke_test.py --fast --only "经典管线,线稿直填"` 退出码 0（与 `.github/workflows/ci.yml`、`release.yml` 同口径）
-- [ ] 若本次涉及神经功能：本地 `python smoke_test.py` 全量通过（CI runner 无 torch / onnxruntime 与模型权重，无法覆盖）
+- [ ] 回归门禁通过：`python scripts/smoke_test.py --fast --only "经典管线,线稿直填"` 退出码 0（与 `.github/workflows/ci.yml`、`release.yml` 同口径）
+- [ ] 若本次涉及神经功能：本地 `python scripts/smoke_test.py` 全量通过（CI runner 无 torch / onnxruntime 与模型权重，无法覆盖）
 - [ ] lint / format 命令：本仓**无** lint / format 门禁，不适用
 - [ ] 镜像类仓条目（Trivy 阻断 / `.trivyignore.yaml` / `provenance` + `sbom`）：**本仓无镜像，不适用**
 - [ ] **本地未产出任何发布交付物**（打包、`SHA256SUMS.txt`、SBOM 均在远端 `release.yml` 生成）

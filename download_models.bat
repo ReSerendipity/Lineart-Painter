@@ -10,5 +10,5 @@ echo   download_models.bat --only sd15 cn_anime   # 只下指定项
 echo   download_models.bat --skip midas animatediff   # 跳过指定项
 echo.
 echo 若报错缺少依赖，请先执行: pip install huggingface_hub
-python setup_models.py %*
+python scripts\setup_models.py %*
 pause

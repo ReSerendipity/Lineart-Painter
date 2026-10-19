@@ -46,7 +46,7 @@ jobs:
       #   未覆盖 —— 仅全量模式包含（需 ~10GB 权重，CI 无法运行）：
       #     神经线稿 Anime2Sketch、神经上色 ControlNet+SD1.5、神经双引擎、
       #     img2img 原图混合、视频经典管线、视频 DDColor/AnimeGAN 扩展、AnimateDiff
-      #   以上未覆盖项需在本地 `python smoke_test.py` 全量回归中另行验证。
+      #   以上未覆盖项需在本地 `python scripts/smoke_test.py` 全量回归中另行验证。
       - name: Regression gate (smoke_test.py)
         shell: pwsh
         timeout-minutes: 5
@@ -55,7 +55,7 @@ jobs:
           PYTHONIOENCODING: utf-8
         run: |
           [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-          python smoke_test.py --fast --only "经典管线,线稿直填"
+          python scripts/smoke_test.py --fast --only "经典管线,线稿直填"
           if ($LASTEXITCODE -ne 0) {
             Write-Host "::error::smoke_test.py 回归门禁失败（退出码 $LASTEXITCODE），已阻断发布"
             # 失败时 smoke_out/ 保留现场（脚本只在启动时清空），列出便于定位
@@ -138,7 +138,7 @@ jobs:
           body: |
             ## Lineart Painter ${{ github.ref_name }}
             - Windows 便携包：`lineart_painter-windows-${{ github.ref_name }}.zip`（解压后运行 lineart_painter.exe，浏览器打开 http://127.0.0.1:8765）
-            - 依赖仅 numpy + opencv，模型权重运行时通过 setup_models.py 下载
+            - 依赖仅 numpy + opencv，模型权重运行时通过 scripts/setup_models.py 下载
             - 附 SHA256SUMS.txt 校验与 sbom-cyclonedx.json 物料清单（CycloneDX 1.6）
           files: |
             lineart_painter-windows-${{ github.ref_name }}.zip
