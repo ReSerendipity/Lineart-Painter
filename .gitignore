@@ -29,3 +29,4 @@ configs/
 # 本地未入库目录与 AI agent 工作清单
 /local/
 AGENTS.md
+!/AGENTS.md
