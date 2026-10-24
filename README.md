@@ -1,6 +1,16 @@
 # Lineart Painter
 
+[![CI](https://github.com/ReSerendipity/Lineart-Painter/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ReSerendipity/Lineart-Painter/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/ReSerendipity/Lineart-Painter)](https://github.com/ReSerendipity/Lineart-Painter/releases)
+
 本地运行的 AI 临摹重绘工作台：把图片或视频处理为线稿、固有色、体积明暗、反射光、色线、高光和最终还原结果。项目提供一个无需前端构建工具的本地 Web 界面，也可以直接调用 Python 模块处理单张图片或视频。
+
+![Lineart Painter Web UI](docs/assets/webui-showcase.png)
+
+## English
+
+Lineart Painter is a local AI-assisted lineart repainting workstation that turns an image or video into a staged pipeline: line extraction, flat colors, volume shading, reflected light, color lines, highlights, and a final restored result. It ships a zero-build local web UI (`python webui.py`, served at `127.0.0.1:8765`) with a batch queue, in-browser stage preview, and PNG / H.264 MP4 export; the same pipeline is also available as a CLI (`python lineart_painter.py input.png --out out`). The classic XDoG + K-Means path runs with no model weights. Optional neural stages (Anime2Sketch lineart, ControlNet + SD1.5 coloring, DDColor photo colorization, AnimeGANv2 stylization, AnimateDiff video consistency) are downloaded on demand via `python scripts/setup_models.py`. The project is released under Apache License 2.0.
 
 ## 功能
 
