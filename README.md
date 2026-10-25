@@ -37,23 +37,23 @@ Lineart Painter 是一个**纯本地**运行的图片/视频重绘工作台。�
 
 **主界面**：上传区、线稿/上色引擎选择、ControlNet 变体、种子与分辨率等参数集中在一张卡片内。
 
-![主界面](docs/assets/readme-lineart-painter-1.png)
+![主界面](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-1.png)
 
 **线稿输入**：勾选「输入已是线稿」后，可直接把一张手绘 sketch 喂进来上色，跳过线稿提取。
 
-![线稿输入](docs/assets/readme-lineart-painter-2.png)
+![线稿输入](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-2.png)
 
 **上色结果**：经典管线对仓内示例 `demo_input.png` 的六步中间产物与 FINAL 合成结果（CPU 实测 0.9 秒，未加载任何神经权重）。
 
-![上色结果](docs/assets/readme-lineart-painter-3.png)
+![上色结果](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-3.png)
 
 **参数说明**：Web UI 内置「使用指南」折叠面板，列出引擎选型、ControlNet 变体、模型下载命令与常用组合速查。
 
-![参数说明](docs/assets/readme-lineart-painter-4.png)
+![参数说明](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-4.png)
 
 **架构总览**：两个入口（Web UI / CLI）→ 输入 → 编排流水线 → 经典或神经两条引擎路径 → 阶段产物与导出。
 
-![架构总览](docs/assets/readme-lineart-painter-5.svg)
+![架构总览](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-5.svg)
 
 ### 快速开始
 
@@ -228,23 +228,23 @@ Two entry points ship in the box:
 
 **Main UI**: drop zone, lineart/color engine selects, ControlNet variants, seed and resolution on one card.
 
-![Main UI](docs/assets/readme-lineart-painter-1.png)
+![Main UI](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-1.png)
 
 **Lineart input**: check "input is already lineart" to colorize a sketch directly, skipping extraction.
 
-![Lineart input](docs/assets/readme-lineart-painter-2.png)
+![Lineart input](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-2.png)
 
 **Coloring result**: the six staged intermediates plus FINAL for the bundled `demo_input.png` via the classic path (0.9 s on CPU, no neural weights loaded).
 
-![Coloring result](docs/assets/readme-lineart-painter-3.png)
+![Coloring result](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-3.png)
 
 **Parameters**: the built-in in-UI guide covers engine choice, ControlNet variants, model download commands, and common recipes.
 
-![Parameters](docs/assets/readme-lineart-painter-4.png)
+![Parameters](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-4.png)
 
 **Architecture**: two entries (Web UI / CLI) → input → orchestrated pipeline → classic or neural engine path → staged outputs and exports.
 
-![Architecture](docs/assets/readme-lineart-painter-5.svg)
+![Architecture](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-5.svg)
 
 ### Quick start
 
