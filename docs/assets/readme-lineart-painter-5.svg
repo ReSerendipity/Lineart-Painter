@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="'Segoe UI','PingFang SC',Arial,sans-serif">
+  <rect width="1200" height="720" fill="#0E1116"/>
+  <style>
+    .box{fill:#151A22;stroke:#343D4A;stroke-width:1.2;rx:10}
+    .box-cls{fill:#152820;stroke:#3FA67A;stroke-width:1.2;rx:10}
+    .box-neu{fill:#1A2233;stroke:#5B7DBE;stroke-width:1.2;rx:10}
+    .t{fill:#E8EAED;font-size:15px;font-weight:600}
+    .ts{fill:#A3D5E8;font-size:13px;font-weight:600}
+    .d{fill:#9AA3AF;font-size:11.5px}
+    .arr{stroke:#5A6472;stroke-width:1.5;fill:none;marker-end:url(#a)}
+    .lbl{fill:#7A828E;font-size:11px}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5A6472"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="36" text-anchor="middle" class="ts" font-size="18">Lineart Painter · 架构总览</text>
+
+  <!-- Entry -->
+  <rect x="60" y="70" width="240" height="80" class="box"/>
+  <text x="180" y="100" text-anchor="middle" class="t">Web UI</text>
+  <text x="180" y="122" text-anchor="middle" class="d">webui.py · 127.0.0.1:8765</text>
+  <text x="180" y="138" text-anchor="middle" class="d">批量队列 · 阶段预览 · ZIP/MP4 导出</text>
+
+  <rect x="60" y="180" width="240" height="70" class="box"/>
+  <text x="180" y="210" text-anchor="middle" class="t">CLI</text>
+  <text x="180" y="232" text-anchor="middle" class="d">lineart_painter.py input.png</text>
+
+  <!-- Input -->
+  <rect x="380" y="110" width="180" height="90" class="box"/>
+  <text x="470" y="140" text-anchor="middle" class="t">输入</text>
+  <text x="470" y="162" text-anchor="middle" class="d">图片 png/jpg/bmp/webp</text>
+  <text x="470" y="178" text-anchor="middle" class="d">视频 mp4/avi/mov/mkv/webm</text>
+
+  <path d="M300 110 L380 150" class="arr"/>
+  <path d="M300 215 L380 170" class="arr"/>
+
+  <!-- Core orchestrator -->
+  <rect x="620" y="110" width="220" height="90" class="box"/>
+  <text x="730" y="140" text-anchor="middle" class="t">编排流水线</text>
+  <text x="730" y="162" text-anchor="middle" class="d">01 线稿 → 02 固有色</text>
+  <text x="730" y="178" text-anchor="middle" class="d">→ 03 明暗 → 04 反射光</text>
+  <text x="730" y="194" text-anchor="middle" class="d">→ 05 色线 → 06 高光 → FINAL</text>
+
+  <path d="M560 155 L620 155" class="arr"/>
+
+  <!-- Two engines -->
+  <rect x="60" y="330" width="500" height="150" class="box-cls"/>
+  <text x="310" y="360" text-anchor="middle" class="ts">经典路径（零权重 · CPU 秒级）</text>
+  <text x="310" y="385" text-anchor="middle" class="d">XDoG 线稿提取 · K-Means 固有色聚类</text>
+  <text x="310" y="405" text-anchor="middle" class="d">低频亮度明暗 · 冷色环境反光 · 色线 · 高光锐化</text>
+  <text x="310" y="430" text-anchor="middle" class="d">依赖：numpy · opencv-python · imageio-ffmpeg</text>
+  <text x="310" y="455" text-anchor="middle" class="lbl">无需下载任何模型，CI 回归即跑此路径</text>
+
+  <rect x="640" y="330" width="500" height="150" class="box-neu"/>
+  <text x="890" y="360" text-anchor="middle" class="ts">神经路径（按需下载 · 需 GPU）</text>
+  <text x="890" y="385" text-anchor="middle" class="d">Anime2Sketch 线稿 · ControlNet+SD1.5 上色（5 变体）</text>
+  <text x="890" y="405" text-anchor="middle" class="d">DDColor 照片上色 · AnimeGANv2 风格化 · AnimateDiff 视频一致性</text>
+  <text x="890" y="430" text-anchor="middle" class="d">适配层：neural.py · vram_manager.py · basicsr/ · _ddcolor_*.py</text>
+  <text x="890" y="455" text-anchor="middle" class="lbl">权重不入库 · scripts/setup_models.py 按需拉取（hf-mirror）</text>
+
+  <path d="M730 200 L730 280 L310 280 L310 330" class="arr"/>
+  <path d="M730 280 L890 280 L890 330" class="arr"/>
+
+  <!-- Output -->
+  <rect x="380" y="540" width="440" height="120" class="box"/>
+  <text x="600" y="570" text-anchor="middle" class="t">产物</text>
+  <text x="600" y="595" text-anchor="middle" class="d">01_lineart.png … 06_highlight.png · final.png · lineart.svg</text>
+  <text x="600" y="615" text-anchor="middle" class="d">replay.html 分步还原演示 · H.264 MP4 视频导出</text>
+  <text x="600" y="640" text-anchor="middle" class="lbl">Web UI 浏览器内预览 · 一键打包 ZIP</text>
+
+  <path d="M310 480 L310 510 L600 510 L600 540" class="arr"/>
+  <path d="M890 480 L890 510 L600 510" class="arr"/>
+</svg>
