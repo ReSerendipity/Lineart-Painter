@@ -35,21 +35,21 @@ Lineart Painter 是一个**纯本地**运行的图片/视频重绘工作台。�
 
 ### 展示
 
-**主界面**：上传区、线稿/上色引擎选择、ControlNet 变体、种子与分辨率等参数集中在一张卡片内。
+**主界面**：上传仓内两张样例图（`cad_demo_input.png` 线稿 + `demo_input.png` 彩色插画），线稿/上色引擎、ControlNet 变体、种子、分辨率等参数集中在一张卡片内。
 
-![主界面](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-1.png)
+![主界面](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-1-20261026.png)
 
-**线稿输入**：勾选「输入已是线稿」后，可直接把一张手绘 sketch 喂进来上色，跳过线稿提取。
+**参数细项**：XDoG 线稿阈值 `eps=-0.10`、色块数 `k=10`、随机种子 `seed=42`、原图混合强度 `strength=0`、上色提示词均已填好；下方为参考图上传与颜色引导画布。
 
-![线稿输入](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-2.png)
+![参数细项](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-2-20261026.png)
 
-**上色结果**：经典管线对仓内示例 `demo_input.png` 的六步中间产物与 FINAL 合成结果（CPU 实测 0.9 秒，未加载任何神经权重）。
+**生成结果（线稿输出）**：对仓内样例 `cad_demo_input.png` 跑经典 XDoG + K-Means（CPU 实测 2.1 秒，未加载任何神经权重），`01 线稿` 即 XDoG 真实输出，后续 `02 固有色` … `06 高光与细节` 与 `FINAL 还原(黑线)` 同屏可见。
 
-![上色结果](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-3.png)
+![生成结果](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-3-20261026.png)
 
-**参数说明**：Web UI 内置「使用指南」折叠面板，列出引擎选型、ControlNet 变体、模型下载命令与常用组合速查。
+**批量结果**：一次队列同时上传 `cad_demo_input.png` + `demo_input.png`，结果区依次堆叠两组任务卡片；图上方露出的是上一个任务的 `FINAL 还原(黑线)`，下方是 `demo_input.png` 的六步阶段产物，右上角一键打包 ZIP。
 
-![参数说明](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-4.png)
+![批量结果](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-4-20261026.png)
 
 **架构总览**：两个入口（Web UI / CLI）→ 输入 → 编排流水线 → 经典或神经两条引擎路径 → 阶段产物与导出。
 
@@ -226,21 +226,21 @@ Two entry points ship in the box:
 
 ### Showcase
 
-**Main UI**: drop zone, lineart/color engine selects, ControlNet variants, seed and resolution on one card.
+**Main UI**: both bundled samples uploaded (`cad_demo_input.png` lineart + `demo_input.png` colored illustration); lineart/color engines, ControlNet variants, seed, and resolution on one card.
 
-![Main UI](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-1.png)
+![Main UI](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-1-20261026.png)
 
-**Lineart input**: check "input is already lineart" to colorize a sketch directly, skipping extraction.
+**Parameters**: XDoG lineart threshold `eps=-0.10`, palette size `k=10`, seed `42`, img2img strength `0`, and the colorization prompt are pre-filled; reference image upload and color-hint canvas sit below.
 
-![Lineart input](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-2.png)
+![Parameters](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-2-20261026.png)
 
-**Coloring result**: the six staged intermediates plus FINAL for the bundled `demo_input.png` via the classic path (0.9 s on CPU, no neural weights loaded).
+**Lineart output**: running the classic XDoG + K-Means path on bundled `cad_demo_input.png` (2.1 s on CPU, no neural weights). `01 lineart` is the real XDoG output; `02 flat color` … `06 highlights` and `FINAL` render in the same grid.
 
-![Coloring result](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-3.png)
+![Lineart output](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-3-20261026.png)
 
-**Parameters**: the built-in in-UI guide covers engine choice, ControlNet variants, model download commands, and common recipes.
+**Batch results**: one upload of two files (`cad_demo_input.png` + `demo_input.png`) stacks two task cards; the top strip shows the previous task's `FINAL`, below is the `demo_input.png` six-stage grid, with a one-click ZIP download in the corner.
 
-![Parameters](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-4.png)
+![Batch results](https://gcore.jsdelivr.net/gh/ReSerendipity/Lineart-Painter@main/docs/assets/readme-lineart-painter-4-20261026.png)
 
 **Architecture**: two entries (Web UI / CLI) → input → orchestrated pipeline → classic or neural engine path → staged outputs and exports.
 
