@@ -6,6 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)](https://www.python.org/)
 [![Last commit](https://img.shields.io/github/last-commit/ReSerendipity/Lineart-Painter)](https://github.com/ReSerendipity/Lineart-Painter/commits/main)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-A3D5E8)](#-贡献)
+[![Governance](https://img.shields.io/badge/governance-ReSerendipity%2F.github-blue)](https://github.com/ReSerendipity/.github/tree/main/governance)
 
 本地运行的 AI 临摹重绘工作台：把图片或视频拆成「线稿 → 固有色 → 体积明暗 → 反射光 → 色线 → 高光 → FINAL」七步流水线，在浏览器里逐阶段查看并导出 PNG / MP4。经典路径（XDoG + K-Means）零模型权重、CPU 秒级出图；神经路径按需下载权重，可选 GPU 加速。
 
