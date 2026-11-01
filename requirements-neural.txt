@@ -9,7 +9,7 @@
 #   python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 # 若直接从 PyPI 安装本清单，将拿到默认（CPU）wheel，功能可用但无 GPU 加速。
 
-torch>=2.0,<3.0
+torch>=2.15.0,<3.0
 torchvision>=0.15,<0.23
 diffusers>=0.27,<0.32
 transformers>=4.36,<5.0
