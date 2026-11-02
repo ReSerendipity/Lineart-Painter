@@ -553,6 +553,10 @@ PAGE = """<!DOCTYPE html>
   refreshConfigs();
 })();
 </script>
+<footer style="padding:10px 16px;font-size:12px;opacity:.72;border-top:1px solid rgba(0,0,0,.08);margin-top:12px">
+  <span>Lineart Painter · ReSerendipity</span>
+  <span style="margin-left:10px"><a href="https://github.com/ReSerendipity" target="_blank" rel="noopener">GitHub</a> · <a href="https://modelscope.cn/profile/ReSerendipity" target="_blank" rel="noopener">魔搭 ModelScope</a> · <a href="https://www.zhihu.com/people/6-50-73-59-83" target="_blank" rel="noopener">知乎</a> · <a href="https://space.bilibili.com/499527473" target="_blank" rel="noopener">B站</a> · <a href="https://www.xiaohongshu.com/user/profile/6a606c140000000010000801" target="_blank" rel="noopener">小红书</a> · <a href="https://www.kuaishou.com/profile/3x2sk6hj48i2mhs" target="_blank" rel="noopener">快手</a> · <a href="https://www.douyin.com/user/MS4wLjABAAAAcEdOoxVlfk3Ulx_usqR-3PHW4xxp6wYzRmsuRI_-fHBigPETTKLsv4fknIpFq6sP" target="_blank" rel="noopener">抖音</a></span>
+</footer>
 </body></html>"""
 
 
