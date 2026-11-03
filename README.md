@@ -109,8 +109,8 @@ python lineart_painter.py demo_input.png --out out_demo
 回归测试：
 
 ```bash
-python tests/smoke_test.py            # 全量（含神经上色与视频，约 3~5 分钟）
-python tests/smoke_test.py --fast     # 快速（约 30 秒，零权重子集）
+python scripts/smoke_test.py            # 全量（含神经上色与视频，约 3~5 分钟）
+python scripts/smoke_test.py --fast     # 快速（约 30 秒，零权重子集）
 ```
 
 ### 系统要求与兼容性
@@ -177,8 +177,7 @@ Lineart_Painter/
 ├── basicsr/                 # DDColor 所需网络组件
 ├── _ddcolor_*.py            # DDColor 推理组件
 ├── scripts/
-│   └── setup_models.py       # 一键下载模型权重
-├── tests/
+│   ├── setup_models.py       # 一键下载模型权重
 │   ├── smoke_test.py         # 自动化回归测试
 │   └── webui_test.py         # Web 请求处理聚焦测试
 ├── docs/                     # 文档（含第三方许可与发布治理）
@@ -196,7 +195,7 @@ Lineart_Painter/
 
 ### 贡献、安全与支持
 
-- Issue / PR 欢迎；提交前请本地跑一遍 `python tests/smoke_test.py --fast`。
+- Issue / PR 欢迎；提交前请本地跑一遍 `python scripts/smoke_test.py --fast`。
 - 本仓采用 [Apache License 2.0](LICENSE)；随仓内嵌第三方源码各自遵循其上游许可，见 THIRD_PARTY_NOTICES。
 - 模型权重在运行时在线拉取，需自行接受各上游模型许可证。
 
@@ -300,8 +299,8 @@ python lineart_painter.py demo_input.png --out out_demo
 Regression tests:
 
 ```bash
-python tests/smoke_test.py            # full (neural + video, ~3-5 min)
-python tests/smoke_test.py --fast     # fast (~30 s, zero-weight subset)
+python scripts/smoke_test.py            # full (neural + video, ~3-5 min)
+python scripts/smoke_test.py --fast     # fast (~30 s, zero-weight subset)
 ```
 
 ### Requirements & compatibility
@@ -367,8 +366,7 @@ Lineart_Painter/
 ├── basicsr/                 # DDColor network components
 ├── _ddcolor_*.py            # DDColor inference components
 ├── scripts/
-│   └── setup_models.py       # on-demand weight downloader
-├── tests/
+│   ├── setup_models.py       # on-demand weight downloader
 │   ├── smoke_test.py         # regression suite
 │   └── webui_test.py         # web request handler focused tests
 ├── docs/                     # docs (third-party notices, release governance)
@@ -386,7 +384,7 @@ Lineart_Painter/
 
 ### Contributing, security, support
 
-- Issues and PRs welcome; run `python tests/smoke_test.py --fast` locally before pushing.
+- Issues and PRs welcome; run `python scripts/smoke_test.py --fast` locally before pushing.
 - Code is released under [Apache License 2.0](LICENSE); vendored third-party sources follow their own upstream licenses — see THIRD_PARTY_NOTICES.
 - Model weights are pulled at runtime and bound by their upstream licenses.
 
